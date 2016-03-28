@@ -116,19 +116,16 @@ function parseObject(obj, objectName, doNotReinsert = false) {
 }
 
 function ParseRootDefinition(obj) {
-  const theObjectDefinition = {};
   // 0. A default name for our Definition
-  const jsonDef = 'Response';
+  const jsonDef = 'json';
   // 1. What is the default type for our Definition?
   const jsonType = typeof obj;
 
-  if (jsonType === 'array') parseArray.bind(theObjectDefinition, obj)();
-  else if (jsonType === 'object') parseObject.bind(theObjectDefinition, obj)();
+  if (jsonType === 'array') parseArray.bind(this, obj)();
+  else if (jsonType === 'object') parseObject.bind(this, obj)();
   // theObjectDefinition.jsonType =
   if (!(jsonDef in this)) this[jsonDef] = [];
   this[jsonDef].push(jsonType);
-
-  console.log(theObjectDefinition);
 }
 
 
@@ -136,7 +133,11 @@ function ParseRootDefinition(obj) {
  * @param {Array} jsonObjects
  */
 function goThroughAndParse(jsonObjects) {
-  jsonObjects.forEach(obj => new ParseRootDefinition(obj));
+  const theObjectDefinition = {};
+
+  jsonObjects.forEach(obj => ParseRootDefinition.bind(theObjectDefinition, obj)());
+
+  console.log(theObjectDefinition);
 }
 
 function grabAndConvertJSONData() {
