@@ -147,6 +147,7 @@ function grabAndConvertJSONData() {
 
   try {
     jsonObjects.push(JSON.parse(json));
+    goThroughAndParse(jsonObjects);
   } catch (e) {
     // Let's brake by line and see if they are links.
     const URLs = json.split(/\r\n|\r|\n/g);
