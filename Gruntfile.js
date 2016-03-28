@@ -14,14 +14,17 @@ module.exports = function (grunt) {
       }
     },
     watch: {
-      files: 'src/scss/**/*.scss',
-      tasks: ['sass']
+      files: ['src/scss/**/*.scss', 'src/app.js'],
+      tasks: ['sass', 'babel']
     },
     sass: {
       dev: {
         files: {
           'dist/css/main.css': 'src/scss/main.scss'
         }
+      },
+      options: {
+        style: 'compressed'
       }
     },
     browserSync: {

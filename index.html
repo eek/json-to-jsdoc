@@ -1,25 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>JSON to JSDoc Converter - Documentation and custom type definitions directly from JSON objects</title>
+  <meta charset="UTF-8">
+  <title>JSON to JSDoc Converter - Documentation and custom type definitions directly from JSON objects</title>
 
-    <script type="text/javascript" src="/dist/app.js"></script>
+  <script type="text/javascript" src="/dist/app.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/dist/css/main.css">
 </head>
 <body>
 
-<div class="header">
-  This is my nice looking header.
-</div>
+<div class="container-fluid">
+  <div class="row header">
+    <div class="col-xs-12">
+      This is my nice looking header.
+    </div>
+  </div>
 
-<div class="json-url-input">
-  <label for="json-url-input">Input JSON or Link.</label><br />
-  <textarea id="json-url-input" title="json-url-input" rows="4" cols="50"></textarea>
-</div>
+  <div class="row">
+    <div class="json-url-input col-sm-6">
+      <label for="json-url-input">Input JSON or Link.</label><br/>
+      <textarea id="json-url-input" title="json-url-input" rows="4" cols="50"></textarea>
+    </div>
 
-<div class="jsdoc-output">
-  This will be the great output. :)
-</div>
+    <div class="jsdoc-output col-sm-6">
+      This will be the great output. :)
+    </div>
+  </div>
 
+
+  <div class="row">
+    <div class="col-xs-12">
+      <input onClick='grabAndConvertJSONData()' type="button" value="Convert" />
+    </div>
+    <div class="col-xs-12 options">
+      <input id="obj-to-typedef" type="checkbox"/>
+      <label for="obj-to-typedef">Transform all inner objects to <strong>@typedef</strong></label>
+    </div>
+  </div>
+</div>
 </body>
 </html>

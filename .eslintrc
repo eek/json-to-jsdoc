@@ -1,7 +1,8 @@
 {
-  "extends": "airbnb",
+  "extends": "airbnb/base",
   "rules": {
     "comma-dangle": 0,
-    "quotes": [2, "prefer-single"] //'prefer-single'
+    "quotes": [2, "single"], //'prefer-single'
+    "no-use-before-define": [2, { "functions": false, "classes": true }] // Prevent cyclic errors
   }
 }
