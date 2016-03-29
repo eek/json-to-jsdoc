@@ -1,5 +1,65 @@
+function checkIfNeededToAddUndefinedType(obj, objectKey) {
+  const temporaryObject = {};
+  let maxLenghtOfObject = 0;
+
+  Object.keys(obj).forEach(currentKey => {
+    // check if it's our Object,
+    // like awards.editions in awards.editions.outcome
+    if (~currentKey.indexOf(objectKey) && currentKey !== objectKey) {
+      temporaryObject[currentKey] = obj[currentKey];
+    }
+  });
+
+  // We need to check the local maximum
+  Object.keys(temporaryObject).forEach(key => {
+    const currentKeyLength = temporaryObject[key].length;
+
+    if (currentKeyLength > maxLenghtOfObject) maxLenghtOfObject = currentKeyLength;
+  });
+
+  // If the maximum is bigger than the current value,
+  // but only one child in, we can also have an undefined.
+  Object.keys(temporaryObject).forEach(key => {
+    if (key.split('.').length < 2) {
+      if (maxLenghtOfObject > temporaryObject[key].length) {
+        this[key].push('undefined');
+      }
+    }
+  });
+}
 
 
+function keepUniqueTypes(obj, jsonObjects) {
+  const temporaryObject = obj;
+  const remainingObject = {};
+  const numberOfJSONDefinitions = jsonObjects.length;
+
+  Object.keys(obj).forEach(objectKey => {
+    if (!~objectKey.indexOf('.')) {
+      if (obj[objectKey].length < numberOfJSONDefinitions) {
+        temporaryObject[objectKey].push('undefined');
+      }
+    }
+
+    obj[objectKey].forEach(anyValue => {
+      if (anyValue === 'object' || anyValue === 'object[]') {
+        checkIfNeededToAddUndefinedType.bind(temporaryObject, obj, objectKey)();
+      }
+    });
+  });
+
+  Object.keys(temporaryObject).forEach(key => {
+    remainingObject[key] = getUnique(temporaryObject[key]);
+  });
+
+  return remainingObject;
+}
+
+
+/**
+ * @param {Array} array - The array that needs to be ded-duplicated
+ * @returns {Array}
+ */
 function getUnique(array) {
   const u = {};
   const a = [];
@@ -36,9 +96,13 @@ function httpGetAsync(url, callback) {
                   &q=${encodeURIComponent(`select * from json where url="${url}"`)}`;
   const xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function xmlReadyState() {
-    // console.log(xmlHttp);
+    let results = {};
+
     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-      callback(JSON.parse(xmlHttp.responseText).query.results);
+      results = JSON.parse(xmlHttp.responseText).query.results;
+
+      if (!results) { throw Error(`Could not retrieve URL (${reqUrl}`); }
+      callback(results.json || results);
     }
   };
   xmlHttp.open('GET', reqUrl, true); // true for asynchronous
@@ -108,26 +172,45 @@ function parseObject(obj, objectName, doNotReinsert = false) {
       this[currentPrefix].push(result);
     }
   });
-  // Root Object doesn't have a objectName
-  if (!doNotReinsert) {
+  // Root Object don't have a objectName
+  if (!doNotReinsert && objectName) {
     if (!(objectName in this)) this[objectName] = [];
     this[objectName].push('object');
   }
 }
 
 function ParseRootDefinition(obj) {
-  // 0. A default name for our Definition
-  const jsonDef = 'json';
   // 1. What is the default type for our Definition?
   const jsonType = typeof obj;
 
   if (jsonType === 'array') parseArray.bind(this, obj)();
   else if (jsonType === 'object') parseObject.bind(this, obj)();
-  // theObjectDefinition.jsonType =
-  if (!(jsonDef in this)) this[jsonDef] = [];
-  this[jsonDef].push(jsonType);
 }
 
+/**
+ * @param {Object} obj
+ * @param {Object[]} jsonObjects
+ */
+function printTheTypeDef(obj, jsonObjects) {
+  let output = '';
+  // 0. A default name for our Definition
+  const jsonDef = 'json';
+  const jsonTypes = [];
+
+  Object.keys(jsonObjects).forEach(key => {
+    jsonTypes.push(getTypeOfValue(jsonObjects[key]));
+  });
+
+  output = `/** @typedef {${getUnique(jsonTypes)}} ${jsonDef}<br />`;
+
+  Object.keys(obj).sort().forEach(key => {
+    output += `* @property {${obj[key].join('|')}} ${key}<br />`;
+  });
+
+  output += '*/';
+
+  document.getElementById('jsdoc-output').innerHTML = output;
+}
 
 /**
  * @param {Array} jsonObjects
@@ -138,6 +221,8 @@ function goThroughAndParse(jsonObjects) {
   jsonObjects.forEach(obj => ParseRootDefinition.bind(theObjectDefinition, obj)());
 
   console.log(theObjectDefinition);
+  console.log(keepUniqueTypes(theObjectDefinition, jsonObjects));
+  printTheTypeDef(keepUniqueTypes(theObjectDefinition, jsonObjects), jsonObjects);
 }
 
 function grabAndConvertJSONData() {
@@ -220,13 +305,4 @@ window.grabAndConvertJSONData = grabAndConvertJSONData;
 // typeDef += `*/`;
 //
 // console.log( typeDef );
-//
-//
-//
-// function getTypeOfValue( value ){
-//     var currentType = Object.prototype.toString.call(value).split(' ')[1].slice(0, -1).toLowerCase();
-//
-//     if ( currentType === 'undefined' ) currentType = '*';
-//
-//     return currentType;
-// }
+
