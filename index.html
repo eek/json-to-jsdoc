@@ -25,13 +25,13 @@
   <div class="row main-area">
     <div class="json-url-input col-sm-6">
       <label id="json-input-label" class="json-input-label"
-             for="json-input">Add your Links or JSON data here</label>
-      <textarea id="json-input" title="json-url-input" rows="4" cols="50"></textarea>
+             for="json-input">Add your Links or JSON data</label>
+      <textarea id="json-input" title="json-url-input" rows="15" cols="50"></textarea>
 
       <div class="row">
         <div id="convert-options" class="col-sm-7">
-          <input id="obj-to-typedef" type="checkbox"/>
-          <label id="obj-to-typedef-label" for="obj-to-typedef">Transform similar inner objects to <strong>@typedef</strong></label>
+          <!--<input id="obj-to-typedef" type="checkbox"/>-->
+          <!--<label id="obj-to-typedef-label" for="obj-to-typedef">Transform similar inner objects to <strong>@typedef</strong></label>-->
         </div>
         <div class="col-sm-5 convert">
           <input onClick='grabAndConvertJSONData()' type="button" value="Convert" />
@@ -53,6 +53,11 @@
       </div>
     </div>
   </div>
+
+</div>
+
+<div id="footer">
+  Made with love&giggles by the <a href="https://fnd.ie/vid/eMpQ"><i class="icon-findie-heart"></i>Findie</a> team (<i class="icon-keyboard"></i> Eek / <i class="icon-brush"></i> P2 )
 </div>
 
 <script type="text/javascript">
@@ -65,10 +70,12 @@
     document.getElementById('json-input'),
     { lineNumbers: true, styleActiveLine: true }
   );
+  window.input.setSize('100%', 400);
   window.output = CodeMirror.fromTextArea(
     document.getElementById('jsdoc-output'),
     { lineNumbers: true, styleActiveLine: true }
   );
+  window.output.setSize('100%', 400);
 
   new Clipboard('.btn', {
     text: function() {

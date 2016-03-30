@@ -1,6 +1,6 @@
 @import 'bootstrap';
 @import 'codemirror';
-
+@import 'fontello';
 
 body{
   background-color: #f5f5f5;
@@ -10,7 +10,7 @@ body{
 
 
 .header{
-  padding: 0px;
+  padding: 0;
   letter-spacing: -0.5;
 
   background-color: #24212c;
@@ -32,7 +32,7 @@ body{
 
   .small{
     font-size: 12px;
-    color: #f5f5f5;
+    color: #aaa;
     text-decoration: none;
     font-weight: normal;
 
@@ -105,4 +105,35 @@ body{
   }
 }
 
+.container-fluid{
+  margin-bottom: 60px;
+  position: relative;
+  min-height: 100%;
+}
 
+#footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 5;
+
+  padding: 10px;
+  text-align: center;
+  background-color: #24212c;
+  color: #aaa;
+
+  a{
+    color: #FFF;
+    text-decoration: none;
+
+    .icon-findie-heart{
+      color: #40baea;
+    }
+
+    &:hover{
+      opacity: .8;
+    }
+  }
+}

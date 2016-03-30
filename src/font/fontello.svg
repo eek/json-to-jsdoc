@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2016 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="icon-findie-heart" unicode="&#xe800;" d="M922 316l-387-386c-10-10-21-15-35-15-13 0-27 5-35 14l-387 387c-104 104-104 272 0 376 103 103 272 103 376-1l46-46 46 46c104 104 273 104 376 1 104-104 104-272 0-376z m-283 64l-140 93c-30 20-61 8-70-28 0 0-12-52-12-102s13-101 13-101c8-35 40-47 70-28l140 93c29 21 29 53-1 73z" horiz-adv-x="1000" />
+
+<glyph glyph-name="keyboard" unicode="&#xe801;" d="M214 198v-53q0-9-9-9h-53q-9 0-9 9v53q0 9 9 9h53q9 0 9-9z m72 143v-53q0-9-9-9h-125q-9 0-9 9v53q0 9 9 9h125q9 0 9-9z m-72 143v-54q0-9-9-9h-53q-9 0-9 9v54q0 9 9 9h53q9 0 9-9z m572-286v-53q0-9-9-9h-482q-9 0-9 9v53q0 9 9 9h482q9 0 9-9z m-357 143v-53q0-9-9-9h-54q-9 0-9 9v53q0 9 9 9h54q9 0 9-9z m-72 143v-54q0-9-9-9h-53q-9 0-9 9v54q0 9 9 9h53q9 0 9-9z m214-143v-53q0-9-8-9h-54q-9 0-9 9v53q0 9 9 9h54q8 0 8-9z m-71 143v-54q0-9-9-9h-53q-9 0-9 9v54q0 9 9 9h53q9 0 9-9z m214-143v-53q0-9-9-9h-53q-9 0-9 9v53q0 9 9 9h53q9 0 9-9z m215-143v-53q0-9-9-9h-54q-9 0-9 9v53q0 9 9 9h54q9 0 9-9z m-286 286v-54q0-9-9-9h-54q-9 0-9 9v54q0 9 9 9h54q9 0 9-9z m143 0v-54q0-9-9-9h-54q-9 0-9 9v54q0 9 9 9h54q9 0 9-9z m143 0v-196q0-9-9-9h-125q-9 0-9 9v53q0 9 9 9h62v134q0 9 9 9h54q9 0 9-9z m71-420v500h-929v-500h929z m71 500v-500q0-29-21-50t-50-21h-929q-29 0-50 21t-21 50v500q0 30 21 51t50 21h929q30 0 50-21t21-51z" horiz-adv-x="1071.4" />
+
+<glyph glyph-name="brush" unicode="&#xe802;" d="M901 850q39 0 69-26t29-65q0-35-25-84-185-351-260-420-54-51-121-51-71 0-121 52t-51 122q0 72 52 119l356 323q33 30 72 30z m-507-577q22-42 59-73t84-42l1-40q2-119-72-193t-195-75q-68 0-121 26t-86 71-48 102-16 123q4-3 23-17t35-25 32-20 26-9q23 0 31 20 14 37 32 63t39 42 49 27 57 14 70 6z" horiz-adv-x="1000" />
+
+<glyph glyph-name="arrow-curved" unicode="&#xe803;" d="M799 295l0-56 112 0-223-223-224 223 112 0 0 56q0 116-81 197t-197 82-198-82-82-197q0 162 115 276t276 114 276-114 114-276z" horiz-adv-x="928" />
+</font>
+</defs>
+</svg>
