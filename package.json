@@ -1,0 +1,36 @@
+{
+  "name": "json-to-jsdoc",
+  "version": "0.1.0",
+  "description": "JSON to JSdoc online converter. Takes json and outputs JSdoc",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eek/json-to-jsdoc.git"
+  },
+  "keywords": [
+    "json",
+    "jsdocs",
+    "converter"
+  ],
+  "author": "Radu-Sebastian Amarie (hello@eek.ro)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eek/json-to-jsdoc/issues"
+  },
+  "homepage": "https://github.com/eek/json-to-jsdoc#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "browser-sync": "^2.11.2",
+    "eslint": "^2.5.1",
+    "eslint-config-airbnb": "^6.2.0",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^6.0.0",
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.4.1"
+  }
+}

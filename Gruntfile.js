@@ -8,13 +8,17 @@ module.exports = function (grunt) {
         presets: ['es2015']
       },
       dist: {
-        files: {
-          'dist/app.js': 'src/app.js'
-        }
+        files: [{
+          expand: true,
+          cwd: 'src/',
+          src: ['**/*.js'],
+          dest: 'dist/',
+          ext: '.js'
+        }]
       }
     },
     watch: {
-      files: ['src/scss/**/*.scss', 'src/app.js'],
+      files: ['src/scss/**/*.scss', 'src/*.js'],
       tasks: ['sass', 'babel']
     },
     sass: {

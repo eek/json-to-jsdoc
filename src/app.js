@@ -201,15 +201,15 @@ function printTheTypeDef(obj, jsonObjects) {
     jsonTypes.push(getTypeOfValue(jsonObjects[key]));
   });
 
-  output = `/** @typedef {${getUnique(jsonTypes)}} ${jsonDef}<br />`;
+  output = `/** @typedef {${getUnique(jsonTypes)}} ${jsonDef} \n`;
 
   Object.keys(obj).sort().forEach(key => {
-    output += `* @property {${obj[key].join('|')}} ${key}<br />`;
+    output += `* @property {${obj[key].join('|')}} ${key} \n`;
   });
 
   output += '*/';
 
-  document.getElementById('jsdoc-output').innerHTML = output;
+  window.output.getDoc().setValue(output);
 }
 
 /**
@@ -227,7 +227,7 @@ function goThroughAndParse(jsonObjects) {
 
 function grabAndConvertJSONData() {
   // We get the value from the input field. It might be JSON or Links
-  const json = document.getElementById('json-url-input').value;
+  const json = window.input.getValue('');
   const jsonObjects = [];
 
   try {
@@ -261,48 +261,3 @@ function grabAndConvertJSONData() {
 }
 
 window.grabAndConvertJSONData = grabAndConvertJSONData;
-
-
-// var typeDef = `/** @typedef {${jsonType}} ${jsonDef} \n`;
-//
-// var typeDef = insertProperties( json );
-//
-// function insertProperties( obj, jsonDef ){
-//     'use strict';
-//     var currentTypeDef = '';
-//
-//     if ( getTypeOfValue( obj ) !== 'object') {
-//         // console.error('Obj is not object:', obj);
-//         return currentTypeDef;
-//     }
-//
-//
-//
-//     Object.keys(obj).forEach(function(propertyName){
-//
-//         var currentValue = obj[propertyName];
-//         var propertyType = getTypeOfValue( currentValue );
-//         var finalProType = propertyType;
-//         var prefix = jsonDef ? `${jsonDef}.` : '';
-//
-//         // If it's Array, we need the value of the array's, to specify it is an array
-//         if( propertyType === 'array' ) {
-//             currentValue = currentValue[0];
-//             propertyType = getTypeOfValue(currentValue);
-//             finalProType = propertyType + '[]';
-//         }
-//
-//         currentTypeDef += `* @property {${finalProType}} ${prefix}${propertyName}\n`;
-//
-//         if (propertyType === 'object'){
-//             currentTypeDef += insertProperties( currentValue, prefix + propertyName )
-//         }
-//     });
-//
-//     return currentTypeDef;
-// }
-//
-// typeDef += `*/`;
-//
-// console.log( typeDef );
-

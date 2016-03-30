@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <title>JSON to JSDoc Converter - Documentation and custom type definitions directly from JSON objects</title>
 
+  <script type="text/javascript" src="/dist/codemirror.js"></script>
+  <script type="text/javascript" src="/dist/active-line.js"></script>
   <script type="text/javascript" src="/dist/app.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/trianglify/0.4.0/trianglify.min.js"></script>
+  <script type="text/javascript" src="/dist/clipboard.js"></script>
+  <script type="text/javascript" src="/dist/fittext.js"></script>
 
+  <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
   <link rel="stylesheet" type="text/css" href="/dist/css/main.css">
 </head>
 <body>
@@ -14,31 +18,64 @@
 <div class="container-fluid">
   <div class="row header">
     <div class="col-xs-12">
-      This is my nice looking header.
+      <a href="https://eek.ro/json2jsdoc">json2jsdoc</a><a href="https://eek.ro" class="small">by eek.ro</a>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row main-area">
     <div class="json-url-input col-sm-6">
-      <label for="json-url-input">Input JSON or Link.</label><br/>
-      <textarea id="json-url-input" title="json-url-input" rows="4" cols="50"></textarea>
+      <label id="json-input-label" class="json-input-label"
+             for="json-input">Add your Links or JSON data here</label>
+      <textarea id="json-input" title="json-url-input" rows="4" cols="50"></textarea>
+
+      <div class="row">
+        <div id="convert-options" class="col-sm-7">
+          <input id="obj-to-typedef" type="checkbox"/>
+          <label id="obj-to-typedef-label" for="obj-to-typedef">Transform similar inner objects to <strong>@typedef</strong></label>
+        </div>
+        <div class="col-sm-5 convert">
+          <input onClick='grabAndConvertJSONData()' type="button" value="Convert" />
+        </div>
+      </div>
     </div>
 
-    <div id="jsdoc-output" class="jsdoc-output col-sm-6">
-      This will be the great output. :)
-    </div>
-  </div>
+    <div class="jsdoc-output col-sm-6">
+      <label id="jsdoc-output-label" class="jsdoc-output-label"
+             for="jsdoc-output">JSDoc Output</label>
+      <textarea id="jsdoc-output" title="jsdoc-output" rows="4" cols="50">This will be the great output. :)</textarea>
 
-
-  <div class="row">
-    <div class="col-xs-12">
-      <input onClick='grabAndConvertJSONData()' type="button" value="Convert" />
-    </div>
-    <div class="col-xs-12 options">
-      <input id="obj-to-typedef" type="checkbox"/>
-      <label for="obj-to-typedef">Transform all inner objects to <strong>@typedef</strong></label>
+      <div class="row">
+        <div class="col-sm-12 convert">
+          <input class="btn"
+                 aria-label="ceva"
+                 type="button" value="Copy to Clipboard" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  ['json-input-label', 'jsdoc-output-label'].forEach(function (id){
+    window.fitText(document.getElementById(id), 1.8, { maxFontSize: '32px' });
+  });
+
+
+  window.input = CodeMirror.fromTextArea(
+    document.getElementById('json-input'),
+    { lineNumbers: true, styleActiveLine: true }
+  );
+  window.output = CodeMirror.fromTextArea(
+    document.getElementById('jsdoc-output'),
+    { lineNumbers: true, styleActiveLine: true }
+  );
+
+  new Clipboard('.btn', {
+    text: function() {
+      return window.output.getValue('');
+    }
+  });
+
+</script>
 </body>
 </html>

@@ -1,1 +1,108 @@
 @import 'bootstrap';
+@import 'codemirror';
+
+
+body{
+  background-color: #f5f5f5;
+
+  font-family: Roboto, sans-serif;
+}
+
+
+.header{
+  padding: 0px;
+  letter-spacing: -0.5;
+
+  background-color: #24212c;
+  text-align: center;
+
+  color: #FFF;
+
+  font-size: 42px;
+
+  a{
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover{
+      color: darken(#FFF, 10%);
+    }
+  }
+
+  .small{
+    font-size: 12px;
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: normal;
+
+    margin-left: 5px;
+
+    &:hover{
+      color: darken(#f5f5f5, 10%);
+    }
+  }
+}
+
+.main-area{
+  margin-top: 20px;
+
+  .row{
+    margin-top: 15px;
+  }
+
+  .CodeMirror{
+    border-radius: 10px;
+  }
+  .CodeMirror-scroll{
+    height: calc(100% - 2px);
+    border-radius: 10px 0 0 10px;
+  }
+  .CodeMirror-gutters{
+    border: 0;
+    background-color: #f5f5f5;
+    border-radius: 10px 0 0 10px;
+
+    .CodeMirror-gutter{
+      border: 1px solid #ddd;
+      border-radius: 10px 0 0 10px;
+    }
+  }
+}
+
+.json-input-label, .jsdoc-output-label{
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.convert{
+  text-align: right;
+
+  input{
+    border: 0;
+    border-radius: 10px;
+    padding: 5px 20px;
+
+    font-size: 26px;
+    color: #FFF;
+    background-color: #007eff;
+    max-width: 100%;
+
+    &:hover{
+      background-color: darken(#007eff, 10%);
+    }
+
+    &.btn{
+      background-color: #4cc0a5;
+
+      &:hover{
+        background-color: darken(#4cc0a5, 10%);
+      }
+    }
+
+  }
+}
+
+
