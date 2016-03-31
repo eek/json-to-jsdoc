@@ -220,10 +220,9 @@ function goThroughAndParse(jsonObjects) {
 
   jsonObjects.forEach(obj => ParseRootDefinition.bind(theObjectDefinition, obj)());
 
-  console.log(theObjectDefinition);
-  console.log(keepUniqueTypes(theObjectDefinition, jsonObjects));
   printTheTypeDef(keepUniqueTypes(theObjectDefinition, jsonObjects), jsonObjects);
 }
+
 
 function grabAndConvertJSONData() {
   // We get the value from the input field. It might be JSON or Links

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>JSON to JSDoc Converter - Documentation and custom type definitions directly from JSON objects</title>
 
   <script type="text/javascript" src="/dist/codemirror.js"></script>
@@ -9,6 +11,7 @@
   <script type="text/javascript" src="/dist/app.js"></script>
   <script type="text/javascript" src="/dist/clipboard.js"></script>
   <script type="text/javascript" src="/dist/fittext.js"></script>
+  <script type='text/javascript' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='3318e1949248ed96904926571f3f09d0' data-cfasync='false' async='async'></script>
 
   <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
   <link rel="stylesheet" type="text/css" href="/dist/css/main.css">
@@ -22,6 +25,9 @@
     </div>
   </div>
 
+  <!-- CarbonAds -->
+  <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eekro" id="_carbonads_js"></script>
+
   <div class="row main-area">
     <div class="json-url-input col-sm-6">
       <label id="json-input-label" class="json-input-label"
@@ -33,8 +39,9 @@
           <!--<input id="obj-to-typedef" type="checkbox"/>-->
           <!--<label id="obj-to-typedef-label" for="obj-to-typedef">Transform similar inner objects to <strong>@typedef</strong></label>-->
         </div>
-        <div class="col-sm-5 convert">
-          <input onClick='grabAndConvertJSONData()' type="button" value="Convert" />
+        <div class="col-xs-12 convert">
+          <div id="start-conversion" class="tooltip">Conversion started!</div>
+          <input onClick="grabAndConvertJSONData(); showTooltip('start-conversion');" type="button" value="Convert" />
         </div>
       </div>
     </div>
@@ -46,6 +53,7 @@
 
       <div class="row">
         <div class="col-sm-12 convert">
+          <div id="copy-success" class="tooltip">Copied to clipboard!</div>
           <input class="btn"
                  aria-label="ceva"
                  type="button" value="Copy to Clipboard" />
@@ -54,13 +62,23 @@
     </div>
   </div>
 
+  <div class="row share">
+    <div class="col-xs-12">
+      Share some love!  &#128523;
+    </div>
+    <div class="col-xs-12">
+      <div class='shareaholic-canvas' data-app='share_buttons' data-app-id='21313920'></div>
+    </div>
+  </div>
 </div>
 
 <div id="footer">
-  Made with love&giggles by the <a href="https://fnd.ie/vid/eMpQ"><i class="icon-findie-heart"></i>Findie</a> team (<i class="icon-keyboard"></i> Eek / <i class="icon-brush"></i> P2 )
+  Made with love&giggles by the <br class="visible-xs" /><a href="https://fnd.ie/vid/eMpQ"><i class="icon-findie-heart"></i>Findie</a> team (<i class="icon-keyboard"></i> Eek / <i class="icon-brush"></i> P2 )
 </div>
 
 <script type="text/javascript">
+  var defaultSize = ( window.innerWidth < 768 ) ? 200 : 400;
+
   ['json-input-label', 'jsdoc-output-label'].forEach(function (id){
     window.fitText(document.getElementById(id), 1.8, { maxFontSize: '32px' });
   });
@@ -70,19 +88,34 @@
     document.getElementById('json-input'),
     { lineNumbers: true, styleActiveLine: true }
   );
-  window.input.setSize('100%', 400);
   window.output = CodeMirror.fromTextArea(
     document.getElementById('jsdoc-output'),
     { lineNumbers: true, styleActiveLine: true }
   );
-  window.output.setSize('100%', 400);
+  window.input.setSize('100%', defaultSize);
+  window.output.setSize('100%', defaultSize);
 
-  new Clipboard('.btn', {
+  var clipboard = new Clipboard('.btn', {
     text: function() {
       return window.output.getValue('');
     }
   });
 
+  clipboard.on('success', function(e) {
+    e.clearSelection();
+
+    showTooltip('copy-success');
+  });
+
+  function showTooltip(id){
+    var copyTooltip = document.getElementById(id);
+
+    copyTooltip.className = 'tooltip show';
+
+    setTimeout(function(){
+      copyTooltip.className = 'tooltip';
+    }, 1200);
+  }
 </script>
 </body>
 </html>
