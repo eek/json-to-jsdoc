@@ -114,10 +114,10 @@ body{
   }
 
   .CodeMirror{
+    border: 1px solid #ddd;
     border-radius: 10px;
   }
   .CodeMirror-scroll{
-    height: calc(100% - 2px);
     border-radius: 10px 0 0 10px;
   }
   .CodeMirror-gutters{
@@ -126,7 +126,7 @@ body{
     border-radius: 10px 0 0 10px;
 
     .CodeMirror-gutter{
-      border: 1px solid #ddd;
+      border-right: 1px solid #ddd;
       border-radius: 10px 0 0 10px;
     }
   }
