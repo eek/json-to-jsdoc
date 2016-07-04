@@ -119,9 +119,9 @@ function getTypeOfValue(value) {
                       .slice(0, -1)
                       .toLowerCase();
 
-  if (currentType === 'undefined') currentType = '*';
+  if (!currentType) currentType = '*';
 
-  return currentType;
+  return currentType[0].toUpperCase() + currentType.substr(1);
 }
 /**
  * @param {Array} array - The array that we want to parse

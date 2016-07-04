@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>JSON to JSDoc Converter - Custom type definitions directly from JSON objects</title>
+  <meta name="description" content="Convert JSON or API Requests to JSDocs custom type definitions">
 
   <meta property="og:title" content="JSON to JSDoc Converter" />
   <meta property="og:url" content="https://eek.ro/json-to-jsdoc/" />
@@ -24,7 +25,7 @@
 <div class="container-fluid">
   <div class="row header">
     <div class="col-xs-12">
-      <a href="https://eek.ro/json2jsdoc">json2jsdoc</a><a href="https://eek.ro" class="small">by eek.ro</a>
+      <a href="https://eek.ro/json-to-jsdoc">json2jsdoc</a><a href="https://eek.ro" class="small">by eek.ro</a>
     </div>
   </div>
 
@@ -91,7 +92,6 @@
   ['json-input-label', 'jsdoc-output-label'].forEach(function (id){
     window.fitText(document.getElementById(id), 1.8, { maxFontSize: '32px' });
   });
-
 
   window.input = CodeMirror.fromTextArea(
     document.getElementById('json-input'),
