@@ -32,5 +32,6 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "load-grunt-tasks": "^3.4.1"
-  }
+  },
+  "dependencies": {}
 }
