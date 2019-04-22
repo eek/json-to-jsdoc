@@ -201,13 +201,13 @@ function printTheTypeDef(obj, jsonObjects) {
     jsonTypes.push(getTypeOfValue(jsonObjects[key]));
   });
 
-  output = `/** @typedef {${getUnique(jsonTypes)}} ${jsonDef} \n`;
+  output = `/**\n * @typedef {${getUnique(jsonTypes)}} ${jsonDef} \n`;
 
   Object.keys(obj).sort().forEach(key => {
-    output += `* @property {${obj[key].join('|')}} ${key} \n`;
+    output += ` * @property {${obj[key].join('|')}} ${key} \n`;
   });
 
-  output += '*/';
+  output += ' */';
 
   window.output.getDoc().setValue(output);
 }
